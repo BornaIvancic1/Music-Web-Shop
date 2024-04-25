@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:insert="Navbar"></div>
+<div class="container about anim">
+    <img src="/images/logo.png" class="ImageLogoo">
+
+    <h1>Welcome to Our Music Shop!</h1>
+    <p>
+        At our music shop, we're passionate about providing you with an unforgettable musical experience.
+        Whether you're a seasoned musician or just starting your musical journey, we have something for everyone.
+    </p>
+    <h2>What We Offer:</h2>
+    <ul>
+        <li><strong>Wide Selection of Music:</strong> Browse through our extensive collection of albums spanning various genres and artists.</li>
+        <li><strong>Quality Products:</strong> We take pride in offering high-quality albums and merchandise from top artists and labels.</li>
+        <li><strong>Expert Advice:</strong> Our knowledgeable staff is here to assist you every step of the way.</li>
+        <li><strong>Community Hub:</strong> Beyond just a retail store, we strive to foster a vibrant community of music lovers.</li>
+        <li><strong>Online Convenience:</strong> Can't make it to our physical store? Shop online from the comfort of your own home.</li>
+    </ul>
+    <p class="last">Whether you're looking to expand your music collection, discover new artists, or simply soak in the joy of music,
+        we invite you to visit our music shop today. Experience the magic of music with us!</p>
+
+</div>
+<div th:insert="Footer"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+<style>
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+.ImageLogoo{
+    height: 300px;
+    border-radius: 100px;
+    margin: 15px;
+}
+.last{
+    padding-bottom: 20px;
+}
+
+</style>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase History</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .purchase {
+        margin-top: 180px;
+        background-color: #8799ff;
+        padding: 30px;
+        border-radius: 30px;
+        color: #0c0029;
+        box-shadow: 0 0 20px rgb(0, 0, 0, 0.5) !important;
+    }
+
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+    table {
+        margin: auto;
+    }
+</style>
+<body>
+<div th:insert="Navbar"></div>
+<div class="container purchase anim">
+    <h1>Purchase History</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Album</th>
+            <th>Number Of Orders</th>
+            <th>User First Name</th>
+            <th>User Last Name</th>
+            <th>Purchase Time</th>
+            <th>Purchase Method</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cartItem : ${soldShoppingCartDTOList}">
+            <td th:text="${cartItem.albumName}"></td>
+            <td th:text="${cartItem.soldShoppingCart.numberOfOrders}"></td>
+            <td th:text="${cartItem.user.firstName}"></td>
+            <td th:text="${cartItem.user.lastName}"></td>
+            <td th:text="${#lists.isEmpty(cartItem.shoppingCartDetails) ? '' : cartItem.shoppingCartDetails[0].purchaseDateTime}"></td>
+            <td th:text="${#lists.isEmpty(cartItem.shoppingCartDetails) ? '' : cartItem.shoppingCartDetails[0].purchaseMethod}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

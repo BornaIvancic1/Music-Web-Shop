@@ -1,0 +1,97 @@
+.logo {
+    height: 150px;
+    margin-top: -30px;
+    margin-bottom: -30px;
+    margin-left: -27px;
+}
+
+.navbar {
+    z-index: 1000000;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background-color: #0c0029;
+    border-radius: 30px;
+    width: 95%;
+    margin: 10px auto 0;
+font-weight: 600;
+    font-size: 16px;
+}
+.navbar-nav{
+    text-align: center;
+}
+
+.nav-link {
+    margin-right: 10px;
+    color: #8799ff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-link:hover {
+    color: #8799ff;
+    filter: saturate(300%);
+    text-shadow: 0 0 5px #ffffff;
+}
+
+.nav-link.signOut {
+    color: darkred;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-link.signOut:hover {
+    color: red;
+    filter: saturate(300%);
+    text-shadow: 0 0 5px #ffffff;
+}
+.footer {
+    background-color: #8799ff;
+    padding: 20px 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    box-shadow: 0 0 25px #0c0029;
+    font-weight: 600;
+}
+
+.container {
+    text-align: center;
+}
+
+ul.list-unstyled {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.list-unstyled li {
+    margin-bottom: 10px;
+}
+.admint{
+    color: sandybrown;
+}
+.admint:hover{
+    color: sandybrown;
+    filter: saturate(300%);
+    text-shadow: 0 0 5px #ffffff;
+}
+.me{
+    color: mediumseagreen;
+}
+.me:hover {
+    color: mediumseagreen;
+    filter: saturate(300%);
+    text-shadow: 0 0 5px #ffffff;
+}
+.material-symbols-outlined{
+    margin-right: 10px;
+    color: #8799ff;
+    vertical-align: bottom;
+}

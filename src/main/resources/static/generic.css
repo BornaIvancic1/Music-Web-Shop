@@ -1,0 +1,95 @@
+body {
+    background: radial-gradient(circle, #0c0029, #8799ff);}
+    .anim{
+    animation: fadeInAnimation 1s ease-in-out forwards;
+    opacity: 0;
+    filter: blur(20px);
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+        filter: blur(20px);
+
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+
+    }
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto auto;
+    padding: 20px;
+    background-color: #0c0029;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #8799ff;
+}
+label{
+    color: #8799ff;
+}
+.form-control{
+    background-color: #8799ff !important;
+    color: #0c0029 !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+.btn{
+    border-radius: 20px !important;
+}
+.btn-primary {
+    background-color: #0c0029 !important;
+    border-color: #8799ff !important;
+    box-shadow: 0 0 5px #8799ff !important;
+    transition: box-shadow 0.6s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 15px #8799ff !important;
+}
+.container.about{
+ background-color: #8799ff;
+    color: #0c0029;
+    border: none    ;
+    border-radius: 30px;
+    margin-bottom: 300px !important;
+    margin-top: 210px;
+}
+.login-container {
+    margin-top: 210px;
+}
+ .album-grid{
+     padding: 30px;
+     background-color: #8799ff;
+     color: #0c0029;
+     border: none    ;
+     border-radius: 30px;
+     margin-bottom: 200px !important;
+     margin-top: 210px;
+
+ }
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #8799ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0c0029;
+    border-radius: 5px;
+}
+
+
+::-webkit-scrollbar-button {
+    background-color: #8799ff;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #8799ff;
+}

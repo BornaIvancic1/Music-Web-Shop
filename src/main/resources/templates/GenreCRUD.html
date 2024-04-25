@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Genre CRUD</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .album-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly ;
+        margin-top: 30px;
+    }
+    .album{
+        margin-top: 150px;
+    }
+    .album-col {
+        flex-basis: calc(16.666% - 20px);
+        margin-bottom: 20px;
+    }
+    .album-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    .album-title {
+        font-weight: bold;
+    }
+    .artist-name {
+        font-style: italic;
+    }
+    h1{
+        color: #0c0029;
+        text-shadow: 0 0 15px #8799ff !important;
+    }
+    .crudbtns{
+        background-color: #8799ff;
+        color: #0c0029;
+        font-weight: 600;
+        border: none    ;
+        border-radius: 30px;
+        padding: 10px;
+        margin:10px;
+        text-align: center;
+    }
+    #Create{
+        box-shadow: 0 0 20px green;
+
+    }  #Update{
+        box-shadow: 0 0 20px blue;
+
+    }  #Delete{
+        box-shadow: 0 0 20px red;
+
+    }
+    input   {
+background-color: #0c0029;
+    color: #8799ff;
+    font-weight: 600;
+    border: none    ;
+    border-radius: 30px;
+    padding: 10px;
+    margin:5px;}
+
+</style>
+<body>
+
+<div th:insert="Navbar"></div>
+<div class="container album anim">
+    <h1>Genre CRUD</h1>
+
+    <form th:action="@{/musicWebShop/genre/create}" th:object="${genre}"  method="post">
+        <input type="text" name="name" placeholder="Genre Name">
+        <button class="crudbtns" id="Create" type="submit">Add Genre</button>
+    </form>
+
+    <div class="album-grid">
+        <div class="album-col" th:each="genre : ${genres}">
+            <div class="artist-name" th:text="${genre.name}"></div>
+
+            <form th:action="@{/musicWebShop/genre/{id}/update(id=${genre.id})}" method="post">
+
+            <input type="hidden" name="_method" value="PUT">
+                <input type="text" name="name" th:value="${genre.name}" placeholder="Genre Name">
+
+                <button class="crudbtns" id="Update" type="submit">Update</button>
+            </form>
+
+
+            <form th:action="@{/musicWebShop/genre/{id}/delete(id=${genre.id})}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="crudbtns" id="Delete" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="Footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

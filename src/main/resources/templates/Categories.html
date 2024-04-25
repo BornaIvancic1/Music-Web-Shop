@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .container.categories {
+        margin-top: 200px;
+        margin-bottom: 200px;
+    }
+
+    h1 {
+        color: #0c0029;
+        text-shadow: 0 0 15px #8799ff !important;
+    }
+
+    .list-group-item {
+        background-color: #8799ff;
+        color: #0c0029;
+        border-radius: 30px !important;
+        font-size: 20px;
+        font-weight: 500;
+        width: 65%;
+        margin: 10px auto;
+        transition: font-size 0.3s ease;
+    }
+
+    .list-group-item a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .list-group-item:hover a {
+        font-size: 22px;
+    }
+</style>
+<body>
+
+<div th:insert="Navbar"></div>
+
+<div class="container categories anim">
+    <h1>Music Genres</h1>
+    <ul class="list-group">
+        <li class="list-group-item" th:each="genre : ${genres}">
+            <a th:href="@{/musicWebShop/albumByGenre(genreId=${genre.id})}">
+                <span th:text="${genre.name}"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div th:insert="Footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

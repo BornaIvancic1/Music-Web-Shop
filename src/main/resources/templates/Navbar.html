@@ -1,0 +1,132 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link href="/nav.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,200" />
+<nav class="navbar navbar-expand-lg anim">
+    <img class="logo" src="/images/logo_transparent.png" alt="Music Store Logo">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="color: white !important;"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item" th:if="${session.get('username') == null}">
+                  <span class="material-symbols-outlined">
+      login
+  </span>
+                <a class="nav-link me" href="/musicWebShop/login.html">Login</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('username') == null}">
+                  <span class="material-symbols-outlined">
+      how_to_reg
+  </span>
+                <a class="nav-link me" href="/musicWebShop/register.html">Register</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('username') != null}">
+                  <span class="material-symbols-outlined">
+
+person
+
+  </span>
+                <a class="nav-link me" href="/musicWebShop/me.html">Me</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('userType') == 'Admin'}">
+                  <span class="material-symbols-outlined">
+
+group_add
+
+  </span>
+                <a class="nav-link admint" href="/musicWebShop/createAdmin.html">Create Admin</a>
+            </li>
+
+   <li class="nav-item" th:if="${session.get('userType') == 'Admin'}">
+                  <span class="material-symbols-outlined">
+
+playlist_add_circle
+  </span>
+                <a class="nav-link admint" href="/musicWebShop/albumCRUD.html">Album CRUD</a>
+            </li>
+
+<li class="nav-item" th:if="${session.get('userType') == 'Admin'}">
+                  <span class="material-symbols-outlined">
+
+genres
+  </span>
+                <a class="nav-link admint" href="/musicWebShop/genreCRUD.html">Genre CRUD</a>
+            </li>
+<li class="nav-item" th:if="${session.get('userType') == 'Admin'}">
+                  <span class="material-symbols-outlined">
+
+passkey
+  </span>
+                <a class="nav-link admint" href="/musicWebShop/loginHistoryList.html">Login History</a>
+            </li>
+
+
+
+
+
+            <li class="nav-item"  th:if="${session.get('userType') != 'Admin'}">
+                  <span class="material-symbols-outlined">
+      shopping_cart
+  </span>
+                <a class="nav-link me" href="/musicWebShop/shoppingCart.html">Shopping Cart</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('userType') != 'Admin' and session.get('username') != null}">
+                  <span class="material-symbols-outlined">
+      local_shipping
+  </span>
+                <a class="nav-link me" href="/purchaseHistory">Purchase History</a>
+            </li>
+
+            <li class="nav-item" th:if="${session.get('userType') == 'Admin' and session.get('username') != null}">
+                  <span class="material-symbols-outlined">
+      local_mall
+  </span>
+                <a class="nav-link admint" href="/purchaseHistoryAll">Purchase History All</a>
+            </li>
+
+
+            <li class="nav-item" th:if="${session.get('userType') != 'Admin'}">
+                  <span class="material-symbols-outlined">
+      headset_mic
+  </span>
+                <a class="nav-link" href="/musicWebShop/categories.html">Music Categories</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('userType') != 'Admin'}">
+                  <span class="material-symbols-outlined">
+      graphic_eq
+  </span>
+                <a class="nav-link" href="/musicWebShop/newReleases.html">New Releases</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('userType') != 'Admin'}">
+                  <span class="material-symbols-outlined">
+      album
+  </span>
+                <a class="nav-link" href="/musicWebShop/bestSellers.html">Best Sellers</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('userType') != 'Admin'}">
+                  <span class="material-symbols-outlined">
+      roundabout_right
+  </span>
+                <a class="nav-link" href="/musicWebShop/aboutUs.html">About Us</a>
+            </li>
+            <li class="nav-item" th:if="${session.get('userType') != 'Admin'}">
+                  <span class="material-symbols-outlined">
+
+contact_phone
+
+  </span>
+                <a class="nav-link" href="/musicWebShop/contact.html">Contact</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" th:if="${session.get('username') != null}">
+                  <span class="material-symbols-outlined">
+      logout
+  </span>
+                <a class="nav-link signOut" th:href="@{/musicWebShop/logout}">Sign Out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</html>

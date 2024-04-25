@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    input{
+        box-shadow: 0 0 20px rgb(0,0,0,0.5) !important;
+margin: 10px;
+    }
+    .album{
+        margin-top: 167px;
+
+    }
+    .album-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly ;
+        margin-top: 30px;
+        box-shadow: 0 0 20px rgb(0,0,0,0.5) !important;
+
+    }
+    .payment{
+        margin: -100px 30px 100px;
+
+        background-color: #0c0029;
+        border-radius: 30px;
+        padding: 50px;
+    }
+    .album-col {
+        flex-basis: calc(25% - 20px);
+        margin-bottom: 20px;
+    }
+    .album-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        box-shadow: 0 0 20px rgb(0,0,0,0.9) !important;
+    }
+    .album-title {
+        font-weight: bold;
+    }
+    .artist-name {
+        font-style: italic;
+    }
+    h1{
+        color: #0c0029;
+        text-shadow: 0 0 15px #8799ff !important;
+    }
+    .formaaaa{
+        margin-top: 5px;
+
+    }  .btn.btn-danger{
+      box-shadow: 0 0 5px #0c0029 !important;
+
+    }
+       .h2222{
+           color: #8799ff;
+       }
+       .payyy{
+           margin: 10px;
+       }
+</style>
+<body>
+
+<div th:insert="Navbar"></div>
+<div class="container album anim">
+    <h1>Shopping Cart</h1>
+    <div class="album-grid">
+        <div th:if="${#lists.isEmpty(cartItems)}">
+            <h1>Your shopping cart is empty.</h1>
+        </div>
+        <div class="album-col" th:each="cartItem : ${cartItems}">
+            <img class="album-image" th:src="${cartItem.album.imageUrl}" th:alt="${cartItem.album.title}">
+            <div class="album-title" th:text="${cartItem.album.title}"></div>
+            <div class="artist-name" th:text="${cartItem.album.artist}"></div>
+            <div>Quantity: <span th:text="${cartItem.numberOfOrders}"></span></div>
+
+            <div class="formaaaa">
+                <form th:action="@{/musicWebShop/updateCartItem}" method="post">
+                    <input type="hidden" name="albumId" th:value="${cartItem.album.id}" />
+                    <input type="number" style="box-shadow: 0 0 5px #0c0029;"  class="form-control" name="quantity" min="1" value="${cartItem.numberOfOrders}" />
+                    <button type="submit" class="btn btn-primary">Update Quantity</button>
+                </form>
+            </div>
+
+            <div class="formaaaa"><form action="/musicWebShop/removeFromCart" method="post">
+                <input type="hidden" name="albumId" th:value="${cartItem.album.id}" />
+                <button type="submit" class="btn btn-danger">Remove from Cart</button>
+            </form></div>
+        </div>
+    </div>
+    <div class="payment" th:if="${session.get('username') != null and not #lists.isEmpty(cartItems)}">
+    <h2 class="h2222">Payment</h2>
+    <form action="/home" method="get">
+
+        <button type="submit" class="btn btn-primary payyy">Proceed to Checkout</button>
+    </form>
+</div>
+</div>
+
+<div th:insert="Footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

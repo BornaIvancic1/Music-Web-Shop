@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Me</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .mee{
+        color: #8799ff;
+        margin-bottom: 120px;
+    }
+    .mee span{
+        font-weight: 700;
+        font-size: 20px;
+    }
+</style>
+<body>
+<div th:insert="Navbar"></div>
+<div class="login-container mee anim">
+    <h1>User Information</h1>
+    <p>Username: <span th:text="${session.username}"></span></p>
+    <p>First Name: <span th:text="${session.firstName}"></span></p>
+    <p>Last Name: <span th:text="${session.lastName}"></span></p>
+    <p>Email: <span th:text="${session.email}"></span></p>
+</div>
+
+
+<div th:insert="Footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

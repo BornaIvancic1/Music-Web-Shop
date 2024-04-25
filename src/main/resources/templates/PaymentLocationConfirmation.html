@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Location Confirmation</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    input ,select  {
+        box-shadow: 0 0 20px rgb(0,0,0,0.5);
+    }
+    label{
+        text-shadow: 0 0 20px rgb(0,0,0,0.5);
+        font-size: 20px;
+    }
+    .pushdd{
+        margin-top: 100px;
+    }
+    h1{
+        color: #0c0029;
+        text-shadow: 0 0 20px #8799ff;
+    }
+</style>
+<body>
+<div class="container pushdd">
+    <h1 class="text-center mt-5">Payment</h1>
+    <form method="post" class="mt-5" action="/locationConfirmation">
+        <div class="mb-3">
+
+                <label for="location" class="form-label">Location</label>
+                <input id="location" type="text" class="form-control" name="location">
+            </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

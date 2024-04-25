@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Album by Genre</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .album-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly ;
+        margin-top: 30px;
+        box-shadow: 0 0 20px rgb(0,0,0,0.5) !important;
+
+    }
+    .album{
+        margin-top: 150px;
+    }
+    .album-col {
+        flex-basis: calc(16.666% - 20px);
+        margin-bottom: 20px;
+    }
+    .album-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        box-shadow: 0 0 20px rgb(0,0,0,0.9) !important;
+    }
+    input{
+        box-shadow: 0 0 20px rgb(0,0,0,0.5) !important;
+
+    }
+    label{
+        text-shadow: 0 0 20px rgb(0,0,0,0.5) !important;
+    }
+    .album-title {
+        font-weight: bold;
+    }
+    .artist-name {
+        font-style: italic;
+    }
+    h1{
+        color: #0c0029;
+        text-shadow: 0 0 15px #8799ff !important;
+    }
+    button{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+
+</style>
+<body>
+
+<div th:insert="Navbar"></div>
+<div class="container album anim">
+    <h1>Album by Genre</h1>
+
+    <div class="album-grid">
+        <div class="album-col" th:each="album : ${albums}" th:id="'album_' + ${album.id}">
+            <img class="album-image" th:src="${album.imageUrl}" th:alt="${album.title}">
+            <div class="album-title" th:text="${album.title}"></div>
+            <div class="artist-name" th:text="${album.artist}"></div>
+            <form action="/musicWebShop/addToCart" method="post">
+                <input type="hidden" name="albumId" th:value="${album.id}">
+
+                <div class="form-group">
+                    <label style="color: #0c0029;" for="'quantityInput_' + ${album.id}">Quantity:</label>
+                    <input type="number" class="form-control" id="'quantityInput_' + ${album.id}" name="quantity" min="1">
+                </div>
+                <button class="btn btn-primary" type="submit">Add to Cart</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<div th:insert="Footer"></div>
+
+
+
+</body>
+</html>

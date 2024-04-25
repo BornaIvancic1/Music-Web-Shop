@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Best Sellers</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .album-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly ;
+            margin-top: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+        .album{
+            margin-top: 150px;
+        }
+        .card{
+            background: none;
+            border: none;
+        }
+
+        .album-col {
+            flex-basis: calc(20% - 20px);
+            margin-bottom: 20px;
+        }
+        .album-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) !important;
+        }
+        input {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+        label {
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+        .album-title {
+            font-weight: bold;
+            color: #0c0029;
+        }
+        .artist-name {
+            font-style: italic;
+            color: #0c0029;
+        }
+        h1 {
+            color: #0c0029;
+            text-shadow: 0 0 15px #8799ff !important;
+        }
+        button {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="Navbar"></div>
+
+<div class="container album anim">
+    <h1>Best Sellers</h1>
+    <form id="filterForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="artist">Artist:</label>
+                <input type="text" class="form-control" id="artist" name="artist" placeholder="Enter artist name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="albumName">Album Name:</label>
+                <input type="text" class="form-control" id="albumName" name="albumName" placeholder="Enter album name">
+            </div>
+        </div>
+    </form>
+    <div class="album-grid" id="albumGrid">
+    </div>
+</div>
+<div th:insert="Footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function fetchAlbums() {
+        const artist = $('#artist').val();
+        const albumName = $('#albumName').val();
+        let url = '/api/bestSellers';
+        if (artist || albumName) {
+            url += '?';
+            if (artist) {
+                url += 'artist=' + encodeURIComponent(artist) + '&';
+            }
+            if (albumName) {
+                url += 'albumName=' + encodeURIComponent(albumName);
+            }
+        }
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (albums) {
+                $('#albumGrid').empty();
+                albums.forEach(function (album) {
+                    const albumCol = $('<div>').addClass('album-col col-md-4 mb-4');
+                    const albumCard = $('<div>').addClass('card');
+                    const image = $('<img>').addClass('card-img-top album-image').attr('src', album.imageUrl).attr('alt', album.title);
+                    const cardBody = $('<div>').addClass('card-body');
+                    const title = $('<h5>').addClass('card-title album-title').text(album.title);
+                    const artist = $('<p>').addClass('card-text artist-name').text('Artist: ' + album.artist);
+                    const form = $('<form>').attr('action', '/musicWebShop/addToCart').attr('method', 'post');
+                    const albumIdInput = $('<input>').attr('type', 'hidden').attr('name', 'albumId').val(album.id);
+                    const quantityLabel = $('<label>').css('color', '#0c0029').attr('for', 'quantityInput_' + album.id).text('Quantity:');
+                    const quantityInput = $('<input>').addClass('form-control').attr('type', 'number').attr('id', 'quantityInput_' + album.id).attr('name', 'quantity').attr('min', '1');
+                    const submitButton = $('<button>').addClass('btn btn-primary').attr('type', 'submit').text('Add to Cart');
+                    form.append(albumIdInput, $('<br>'), quantityLabel, quantityInput, $('<br>'), submitButton);
+                    cardBody.append(title, artist, form);
+                    albumCard.append(image, cardBody);
+                    albumCol.append(albumCard);
+                    $('#albumGrid').append(albumCol);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching albums:', status);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        fetchAlbums();
+        $('#artist').on('input', fetchAlbums);
+        $('#albumName').on('input', fetchAlbums);
+    });
+</script>
+</body>
+</html>

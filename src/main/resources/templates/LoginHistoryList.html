@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login History</title>
+    <link href="/generic.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .history{
+        margin-top: 180px;
+        background-color: #8799ff;
+        padding: 30px;
+        border-radius: 30px;
+        color: #0c0029;
+        box-shadow: 0 0 20px rgb(0,0,0,0.5) !important;
+    }
+</style>
+<body>
+<div th:insert="Navbar"></div>
+<div class="container history anim">
+    <h1>Login History</h1>
+    <div th:if="${#lists.isEmpty(loginHistoryList)}">
+        <p>No login history</p>
+    </div>
+    <div th:unless="${#lists.isEmpty(loginHistoryList)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>User ID</th>
+                <th>User First Name</th>
+                <th>User Last Name</th>
+                <th>Login Time</th>
+                <th>IP Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="login : ${loginHistoryList}">
+                <td th:text="${login.userId}"></td>
+                <td th:text="${login.firstName}"></td>
+                <td th:text="${login.lastName}"></td>
+                <td th:text="${#dates.format(login.loginTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td th:text="${login.ipAddress}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
